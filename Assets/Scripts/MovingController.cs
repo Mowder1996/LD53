@@ -19,6 +19,8 @@ namespace DefaultNamespace
         private Vector3 _startPoint;
         [SerializeField]
         private Vector3 _limits;
+        [SerializeField]
+        private Material _highlightMaterial;
 
         private Dictionary<KeyController, IPlatform> _keyBindings;
         private IPlatform _currentPlatform;
@@ -53,9 +55,27 @@ namespace DefaultNamespace
             {
                 if (pair.Key.IsKeyDown())
                 {
+                    if (pair.Value.TryGetSupplier(out var supplier))
+                    {
+                        DrawKeys(_cityManager.GetNextPlatforms(_currentPlatform, _limits));
+                        
+                        _avatar.GetSupply(supplier);
+                        
+                        return;
+                    }
+                    
+                    if (pair.Value.TryGetReceiver(out var receiver))
+                    {
+                        _avatar.TrySpendSupply(receiver);
+
+                        DrawKeys(_cityManager.GetNextPlatforms(_currentPlatform, _limits));
+
+                        return;
+                    }
+                    
                     _currentPlatform = pair.Value;
                     DrawKeys(_cityManager.GetNextPlatforms(_currentPlatform, _limits));
-                    
+
                     var sequence = _avatar.ChangePlatform(_currentPlatform, pair.Value);
                     sequence.Play();
                 }
@@ -64,6 +84,11 @@ namespace DefaultNamespace
 
         private void DrawKeys(IPlatform[] platforms)
         {
+            foreach (var platform in _keyBindings.Values)
+            {
+                platform.HideHighlight();
+            }
+            
             foreach (var key in _keyBindings.Keys)
             {
                 DestroyImmediate(key.gameObject);
@@ -74,13 +99,29 @@ namespace DefaultNamespace
             var keys = new KeyController[Mathf.Min(platforms.Length, 6)];
             var indexes = new List<int>() {0, 1, 2, 3, 4, 5};
             var cameraSight = -Camera.main.transform.forward;
-            // cameraSight.x = 0;
-            // cameraSight.z = 0;
-            
+
             for (var i = 0; i < keys.Length; i++)
             {
-                var keyPosition = platforms[i].GroundPoint + Vector3.up * 0.05f;
-                var keyRotation = Quaternion.LookRotation(Vector3.up, -cameraSight);
+                platforms[i].Highlight(_highlightMaterial);
+
+                Vector3 keyPosition;
+                Quaternion keyRotation;
+
+                if (platforms[i].TryGetSupplier(out var supplier))
+                {
+                    keyPosition = platforms[i].GroundPoint + Vector3.up * 0.5f;
+                    keyRotation = Quaternion.LookRotation(Camera.main.transform.position - keyPosition);
+                }
+                else if (platforms[i].TryGetReceiver(out var receiver))
+                {
+                    keyPosition = platforms[i].GroundPoint + Vector3.up * 0.75f;
+                    keyRotation = Quaternion.LookRotation(Camera.main.transform.position - keyPosition);
+                }
+                else
+                {
+                    keyPosition = platforms[i].GroundPoint + Vector3.up * 0.05f;
+                    keyRotation = Quaternion.LookRotation(Vector3.up, -cameraSight);   
+                }
 
                 var keyController = Instantiate(_keyPrefab, keyPosition, keyRotation);
                 var index = indexes[Random.Range(0, indexes.Count)];

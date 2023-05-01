@@ -8,7 +8,6 @@ namespace DefaultNamespace
     public class CityManager : MonoBehaviour
     {
         private List<IPlatform> _platforms;
-        private Supplier[] _treasureHubs;
 
         private void Awake()
         {
@@ -20,8 +19,6 @@ namespace DefaultNamespace
             {
                 _platforms.Add(transform.GetChild(i).gameObject.AddComponent<StaticPlatform>());
             }
- 
-            _treasureHubs = GetComponentsInChildren<Supplier>();
         }
 
         public IPlatform GetNearestPlatform(Vector3 position)
@@ -52,6 +49,7 @@ namespace DefaultNamespace
         {
             var nextPlatforms = _platforms
                 .Where(item => !item.Equals(sourcePlatform)
+                        && !item.IsObstacle()
                         && Math.Abs(sourcePlatform.GroundPoint.x - item.GroundPoint.x) <= limits.x
                         && item.GroundPoint.y - sourcePlatform.GroundPoint.y <= limits.y
                         && Math.Abs(sourcePlatform.GroundPoint.z - item.GroundPoint.z) <= limits.z);

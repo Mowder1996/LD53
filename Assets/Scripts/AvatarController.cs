@@ -11,6 +11,12 @@ namespace DefaultNamespace
         private int _startIndex;
         [SerializeField]
         private int _jumpIndex;
+        [SerializeField]
+        private int _collectIndex;
+        [SerializeField]
+        private GameObject _baloonIcon;
+        [SerializeField]
+        private GameObject _oxygenIcon;   
 
         private Material _material;
         
@@ -18,6 +24,9 @@ namespace DefaultNamespace
         private int _currentIndex;
 
         public bool IsJumping => _isJumping;
+
+        private bool _hasSupply;
+        private SupplyType _supplyType;
 
         private void Awake()
         {
@@ -65,7 +74,7 @@ namespace DefaultNamespace
 
                     if (needChangeIndex > 0)
                     {
-                        var randomIndex = Random.Range(0, 8);
+                        var randomIndex = Random.Range(0, 4);
                         
                         SetIndex(randomIndex);
                     }
@@ -79,6 +88,42 @@ namespace DefaultNamespace
                 });
 
             return jumpSequence;
+        }
+
+        public void GetSupply(ISupplier supplier)
+        {
+            _material.SetFloat("_Index", _collectIndex);
+            _supplyType = supplier.Type;
+            _hasSupply = true;
+
+            if (supplier.Type.Equals(SupplyType.Baloon))
+            {
+                _baloonIcon.SetActive(true);
+                _oxygenIcon.SetActive(false);
+            }
+            
+            if (supplier.Type.Equals(SupplyType.Oxygen))
+            {
+                _baloonIcon.SetActive(false);
+                _oxygenIcon.SetActive(true);
+            }
+        }
+
+        public bool TrySpendSupply(IReceiver receiver)
+        {
+            var canSpend = _hasSupply && receiver.SupplyType.Equals(_supplyType);
+
+            if (canSpend)
+            {
+                receiver.Destroy();
+                
+                _baloonIcon.SetActive(false);
+                _oxygenIcon.SetActive(false);
+
+                _hasSupply = false;
+            }
+
+            return canSpend;
         }
 
         private void Update()
