@@ -20,6 +20,15 @@ namespace DefaultNamespace
             
             if (transform.position.y < _waterLevel.WaterLevelValue)
             {
+                var receiver = GetComponent<IReceiver>();
+
+                if (receiver != null)
+                {
+                    receiver.Destroy();
+                    
+                    return;
+                }
+                
                 DestroyImmediate(gameObject);
             }
         }

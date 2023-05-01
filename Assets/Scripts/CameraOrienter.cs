@@ -7,11 +7,11 @@ namespace DefaultNamespace
     {
         private void Update()
         {
-            var direction = Camera.main.transform.position - transform.position;
-            direction.x = 0;
-            direction.z = 0;
-            
-            transform.rotation = quaternion.LookRotation(direction, Vector3.up);
+            var rotation = Quaternion.LookRotation(Camera.main.transform.position - transform.position);
+            rotation.x = 0;
+            rotation.z = 0;
+
+            transform.rotation = rotation;
         }
     }
 }

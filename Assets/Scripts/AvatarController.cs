@@ -115,7 +115,7 @@ namespace DefaultNamespace
 
             if (canSpend)
             {
-                receiver.Destroy();
+                receiver.Save();
                 
                 _baloonIcon.SetActive(false);
                 _oxygenIcon.SetActive(false);

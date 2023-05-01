@@ -20,7 +20,11 @@ namespace DefaultNamespace
 
         public float WaterLevelValue => _water.position.y;
 
-        private float _timer;
+        private int _timer;
+        private int _timerSize;
+
+        public int TimerSeconds => _timer;
+        public int TimerFull => _timerSize;
         
         private void Start()
         {
@@ -41,6 +45,7 @@ namespace DefaultNamespace
 
         private IEnumerator Timer(WaterPlanData planData)
         {
+            _timerSize = planData.Timer;
             _timer = planData.Timer;
 
             for (var i = 0; i < planData.Timer; i++)
