@@ -7,6 +7,9 @@ namespace DefaultNamespace
 {
     public class CityManager : MonoBehaviour
     {
+        [SerializeField]
+        private WaterLevel _waterLevel;
+        
         private List<IPlatform> _platforms;
 
         private void Awake()
@@ -52,7 +55,8 @@ namespace DefaultNamespace
                         && !item.IsObstacle()
                         && Math.Abs(sourcePlatform.GroundPoint.x - item.GroundPoint.x) <= limits.x
                         && item.GroundPoint.y - sourcePlatform.GroundPoint.y <= limits.y
-                        && Math.Abs(sourcePlatform.GroundPoint.z - item.GroundPoint.z) <= limits.z);
+                        && Math.Abs(sourcePlatform.GroundPoint.z - item.GroundPoint.z) <= limits.z
+                        && item.GroundPoint.y > _waterLevel.WaterLevelValue);
 
             return nextPlatforms.ToArray();
         }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8618384939623180925}
   - component: {fileID: 8618384939623180924}
   - component: {fileID: 6976346797555610346}
+  - component: {fileID: 1356256195}
   m_Layer: 0
   m_Name: CatReceiver
   m_TagString: Untagged
@@ -57,6 +58,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 840eb82eac164e139367a0907e00ddc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1356256195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8618384939623180923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a3fbff94ff4b1dbec8babc376568a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8618384939952284602
@@ -121,7 +134,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4346fcdf0b260e54f8843c38e566be40, type: 2}
+  - {fileID: 2100000, guid: 05e5640700b8d0546b53e178508f37b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

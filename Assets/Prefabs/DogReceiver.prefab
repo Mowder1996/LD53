@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4ebda711206bae947a66470322b813e1, type: 2}
+  - {fileID: 2100000, guid: f35cc73168f688144adf0ac6cb322885, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 3562785021215023654}
   - component: {fileID: 3562785021215023653}
   - component: {fileID: -1562722533587050967}
+  - component: {fileID: 1086918837}
   m_Layer: 0
   m_Name: DogReceiver
   m_TagString: Untagged
@@ -187,6 +188,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 840eb82eac164e139367a0907e00ddc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1086918837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3562785021215023652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a3fbff94ff4b1dbec8babc376568a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3562785022008069665

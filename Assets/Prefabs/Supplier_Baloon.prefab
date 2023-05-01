@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5344156692751243798}
   - component: {fileID: 7783391630921713497}
   - component: {fileID: 934279209566421435}
+  - component: {fileID: 213716264}
   m_Layer: 0
   m_Name: Supplier_Baloon
   m_TagString: Untagged
@@ -59,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 3641779842213259739}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.749, y: 4.3487825, z: -5.8354883}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2213094641235080978}
@@ -89,6 +90,18 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 840eb82eac164e139367a0907e00ddc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &213716264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3641779842213259739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a3fbff94ff4b1dbec8babc376568a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6286852620121662697
